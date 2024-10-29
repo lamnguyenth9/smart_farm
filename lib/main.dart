@@ -42,28 +42,31 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           home: Scaffold(
-        body: Row(
-          children: [
-            FutureBuilder(
-              future: _determinePosition(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return BlocProvider<WeatherBlocDartBloc>(
-                    create: (context) => WeatherBlocDartBloc()
-                      ..add(FetchWeather(snapshot.data as Position)),
-                    child: WeatherScreen(),
-                  );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-            Node1()
-          ],
-        ),
-      )),
+        body:  Row(
+            children: [
+              FutureBuilder(
+                future: _determinePosition(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return BlocProvider<WeatherBlocDartBloc>(
+                      create: (context) => WeatherBlocDartBloc()
+                        ..add(FetchWeather(snapshot.data as Position)),
+                      child: WeatherScreen(),
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+             Node1()
+            ],
+          ),
+        
+        
+      ),
+      ),
     );
   }
 }
